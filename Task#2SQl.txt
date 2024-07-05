@@ -1,0 +1,41 @@
+-- Create Employees table
+CREATE TABLE Employees (
+  employee_id INT PRIMARY KEY AUTO_INCREMENT,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  birthdate DATE NOT NULL,
+  phone_number VARCHAR(20),
+  national_id VARCHAR(20) UNIQUE,
+  nationality VARCHAR(50),
+  marital_status VARCHAR(20),
+  photo BLOB,
+  entry_date DATE NOT NULL,
+  password VARCHAR(255) NOT NULL,  
+  department_id INT NOT NULL,
+  FOREIGN KEY (department_id) REFERENCES Departments(department_id)
+);
+
+-- Create Departments table
+CREATE TABLE Departments (
+  department_id INT PRIMARY KEY AUTO_INCREMENT,
+  department_name VARCHAR(255) NOT NULL
+);
+
+-- Create Tasks table
+CREATE TABLE Tasks (
+  task_id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  start_date DATE NOT NULL,
+  due_date DATE NOT NULL,
+  description TEXT,
+  importance_level ENUM('Low', 'Medium', 'High') NOT NULL,
+  employee_id INT NOT NULL,
+  FOREIGN KEY (employee_id) REFERENCES Employees(employee_id)
+);
+
+
+CREATE TABLE Feedback (
+  feedback_id INT PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(255),
+  message TEXT NOT NULL
+);
